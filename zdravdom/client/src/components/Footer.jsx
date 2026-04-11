@@ -36,6 +36,12 @@ export default function Footer({ onBook }) {
         <div className="container">
           
           <div className="footer-links">
+              <div className="footer-col contacts-col">
+              <h4>Контакты</h4>
+              <a href="tel:+79965357073">+7 (996) 535-70-73</a>
+              <a href="tel:+79952236999">+7 (995) 223-69-99</a>
+              <a href="mailto:Kirill.borea@gmail.com">Kirill.borea@gmail.com</a>
+            </div>
             <div className="footer-col">
               <h4>Услуги</h4>
               <Link to="/kirill">Хиропрактика</Link>
@@ -47,15 +53,12 @@ export default function Footer({ onBook }) {
               <h4>Специалисты</h4>
               <Link to="/kirill">Кирилл</Link>
               <Link to="/denis">Денис</Link>
-              <h4 style={{marginTop:'1.2rem'}}>Статьи</h4>
+               </div>
+            <div className="footer-col">
+              <h4>Статьи</h4>
               <Link to="/articles">База знаний</Link>
             </div>
-                <div className="footer-col contacts-col">
-              <h4>Контакты</h4>
-              <a href="tel:+79965357073">+7 (996) 535-70-73</a>
-              <a href="tel:+79952236999">+7 (995) 223-69-99</a>
-              <a href="mailto:Kirill.borea@gmail.com">Kirill.borea@gmail.com</a>
-            </div>
+             
           </div>
         </div>
       </div>

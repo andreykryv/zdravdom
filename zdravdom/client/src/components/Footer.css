@@ -26,13 +26,16 @@
   padding-bottom:3rem; border-bottom:1px solid rgba(245,239,230,0.08);
 }
 .footer-tagline { margin-top:1rem; font-size:.88rem; color:rgba(245,239,230,0.5); max-width:28ch; line-height:1.7; }
-.footer-links { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.footer-links { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; }
 .footer-col h4 { font-size:.7rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--c-copper); margin-bottom:1.2rem; font-family:var(--font-body); }
 .footer-col a,.footer-col span { display:block; font-size:.85rem; color:rgba(245,239,230,0.5); margin-bottom:.6rem; transition:color .2s; }
 .footer-col a:hover { color:var(--c-cream); }
 .footer-bottom { padding:1.5rem 0; }
 .footer-bottom .container { display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem; }
 .footer-bottom span { font-size:.78rem; color:rgba(245,239,230,0.3); }
+@media(max-width:1024px) {
+  .footer-links { grid-template-columns:repeat(2,1fr); }
+}
 @media(max-width:768px) {
   .footer-inner { grid-template-columns:1fr; }
   .footer-links { grid-template-columns:repeat(2,1fr); }
