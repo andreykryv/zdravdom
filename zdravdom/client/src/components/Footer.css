@@ -21,12 +21,8 @@
   border:1.5px solid rgba(245,239,230,0.35); transition:all .25s;
 }
 .footer-map-link:hover { background:var(--c-copper); color:var(--c-forest); border-color:transparent; }
-.footer-inner {
-  display:grid; grid-template-columns:1.5fr 2fr; gap:3rem;
-  padding-bottom:3rem; border-bottom:1px solid rgba(245,239,230,0.08);
-}
-.footer-tagline { margin-top:1rem; font-size:.88rem; color:rgba(245,239,230,0.5); max-width:28ch; line-height:1.7; }
-.footer-links { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; }
+.footer-inner { padding-bottom:3rem; border-bottom:1px solid rgba(245,239,230,0.08); }
+.footer-links { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; max-width:1200px; margin:0 auto; padding:0 clamp(20px,5vw,60px); }
 .footer-col h4 { font-size:.7rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--c-copper); margin-bottom:1.2rem; font-family:var(--font-body); }
 .footer-col a,.footer-col span { display:block; font-size:.85rem; color:rgba(245,239,230,0.5); margin-bottom:.6rem; transition:color .2s; }
 .footer-col a:hover { color:var(--c-cream); }
