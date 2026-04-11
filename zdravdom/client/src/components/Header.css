@@ -12,15 +12,15 @@
 }
 
 /* Logo */
-.redesign-logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; text-decoration: none; }
-.logo-icon svg { width: 44px; height: 44px; }
+.redesign-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; text-decoration: none; }
+.logo-icon svg { width: 38px; height: 38px; }
 .logo-text-block { display: flex; flex-direction: column; line-height: 1.1; }
 .logo-main {
-  font-family: var(--font-display); font-size: 1.5rem; font-weight: 500;
-  background: linear-gradient(135deg, #f5efe6, #e0d5c4); background-clip: text;
-  -webkit-background-clip: text; color: transparent;
+  font-family: var(--font-display); font-size: 1.4rem; font-weight: 400;
+  color: var(--c-cream);
+  letter-spacing: 0.05em;
 }
-.logo-sub { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,239,230,0.65); }
+.logo-sub { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,239,230,0.5); }
 
 /* Desktop nav */
 .main-nav { display: flex; align-items: center; gap: .15rem; margin-left: auto; }
@@ -38,8 +38,8 @@
 .header-actions { display: flex; align-items: center; gap: 10px; }
 .desktop-phones {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+    flex-direction: row;
+  gap: 8px;
 }
 .phone-copy-item {
   display: flex; align-items: center; gap: 7px;
@@ -106,7 +106,90 @@
 }
 @media (min-width: 1024px) {
   .site-header { height: 80px; }
-  .logo-main { font-size: 1.9rem; }
-  .logo-sub { font-size: 0.72rem; }
-  .logo-icon svg { width: 52px; height: 52px; }
+   .logo-main { font-size: 1.6rem; }
+  .logo-sub { font-size: 0.65rem; }
+  .logo-icon svg { width: 42px; height: 42px; }
+}
+.redesign-logo-v5 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  transition: transform 0.25s var(--ease-out-quint);
+}
+.redesign-logo-v5:hover {
+  transform: translateY(-1px);
+}
+.redesign-logo-v5 .logo-icon svg {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  transition: filter 0.2s;
+}
+.redesign-logo-v5:hover .logo-icon svg {
+  filter: drop-shadow(0 4px 8px rgba(176,120,64,0.25));
+}
+.logo-text-block {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-main {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, #f5efe6 0%, #e0d5c4 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.logo-sub {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(245,239,230,0.75);
+  margin-top: 3px;
+}
+
+/* Базовые размеры (мобильные, планшеты) */
+.redesign-logo-v5 .logo-icon svg {
+  width: 38px;
+  height: 38px;
+}
+.logo-main {
+  font-size: 1.4rem;
+}
+.logo-sub {
+  font-size: 0.65rem;
+}
+
+/* ПК — значительно увеличиваем */
+@media (min-width: 1024px) {
+  .redesign-logo-v5 {
+    gap: 20px;
+  }
+  .redesign-logo-v5 .logo-icon svg {
+    width: 56px !important;
+    height: 56px !important;
+  }
+  .logo-main {
+    font-size: 2.2rem !important;
+  }
+  .logo-sub {
+    font-size: 0.85rem !important;
+    margin-top: 4px;
+  }
+}
+
+/* Для очень больших экранов (опционально) */
+@media (min-width: 1440px) {
+  .redesign-logo-v5 .logo-icon svg {
+    width: 64px;
+    height: 64px;
+  }
+  .logo-main {
+    font-size: 2.6rem;
+  }
+  .logo-sub {
+    font-size: 0.95rem;
+  }
 }
