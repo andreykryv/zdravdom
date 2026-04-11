@@ -70,16 +70,23 @@ export default function Home({ onBook }) {
             Убираем боль в спине за <em>1–3 сеанса,</em><br/>
             восстанавливаем нервную систему без таблеток —&nbsp;<em>авторский подход</em> двух специалистов в Краснодаре
           </h1>
-          <div className="hero-stats-row reveal-up delay-2">
-            <div className="stat-item">Многолетний опыт</div>
-            <div className="stat-divider"/>
-            <div className="stat-item stat-highlight">
-              <span className="stat-number">1500+</span>
-              <span className="stat-label">пациентов</span>
-            </div>
-            <div className="stat-divider"/>
-            <div className="stat-item">Гарантия результата</div>
-          </div>
+          <ul className="hero-bullets reveal-up delay-2">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Гарантия результата</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>1500+ пациентов</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Многолетний опыт</span>
+            </li>
+            
+          </ul>
+         
+         
           <div className="hero-actions reveal-up delay-3">
             <button className="btn btn-cta btn-lg" onClick={onBook}>Записаться на приём</button>
             <a href="#services" className="btn btn-ghost btn-lg" onClick={e=>{e.preventDefault();document.getElementById('services')?.scrollIntoView({behavior:'smooth'})}}>
