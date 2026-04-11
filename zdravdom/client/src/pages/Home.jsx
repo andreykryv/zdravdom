@@ -65,7 +65,7 @@ export default function Home({ onBook }) {
         <div className="container hero-content">
           
           <h1 className="hero-title reveal-up delay-1">
-            Убираем боль в спине за <em>1–3 сеанса,</em><br/>
+            Убираем боль в спине за <em>1–3 сеанса,</em>
             восстанавливаем нервную систему без таблеток —&nbsp;<em>авторский подход</em> двух специалистов в Краснодаре
           </h1>
           <ul className="hero-bullets reveal-up delay-2">
