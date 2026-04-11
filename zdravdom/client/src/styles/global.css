@@ -133,11 +133,34 @@ strong { font-weight:600; }
 
 /* ─── TOAST ─── */
 .copy-toast {
-  position:fixed; top:90px; left:50%; transform:translateX(-50%) translateY(-20px);
-  background:rgba(26,46,30,0.96); backdrop-filter:blur(8px);
-  color:var(--c-cream); padding:10px 24px; border-radius:60px;
-  font-size:.9rem; font-weight:500; z-index:1100; opacity:0;
-  transition:opacity 0.25s,transform 0.25s; pointer-events:none;
-  white-space:nowrap; border-left:4px solid var(--c-copper);
+  position: fixed;
+  top: 60px;           /* вместо bottom */
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px); /* смещение вверх для анимации */
+  background: var(--c-copper);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 2000;
+
+  /* Горизонтальное отображение содержимого */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  max-width: 90vw;
+  width: auto;
+  box-sizing: border-box;
 }
-.copy-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+.copy-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0); /* анимация приезда сверху */
+}

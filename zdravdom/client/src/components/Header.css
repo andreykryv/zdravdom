@@ -90,12 +90,37 @@
 .mobile-menu-overlay.open { display: block; }
 
 .copy-toast {
-  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(20px);
-  background: var(--c-copper); color: #fff; padding: 10px 20px; border-radius: 40px;
-  font-size: 0.9rem; font-weight: 500; opacity: 0; pointer-events: none;
-  transition: all 0.3s ease; z-index: 2000;
+  position: fixed;
+  top: 60px;           /* вместо bottom */
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px); /* смещение вверх для анимации */
+  background: var(--c-copper);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 2000;
+
+  /* Горизонтальное отображение содержимого */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  max-width: 90vw;
+  width: auto;
+  box-sizing: border-box;
 }
-.copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.copy-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0); /* анимация приезда сверху */
+}
 
 @media (max-width: 768px) {
   .main-nav, .header-actions { display: none; }
