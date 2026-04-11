@@ -187,7 +187,8 @@ export default function Home({ onBook }) {
           </div>
         </div>
       </section>
-
+  {/* ── DIVIDER ── */}
+      <div className="section-divider"></div>
       {/* ── REVIEWS ── */}
       <section className="reviews-section" id="reviews">
         <div className="container">
@@ -199,6 +200,7 @@ export default function Home({ onBook }) {
         </div>
       </section>
 
+    
       {/* ── FORMATS ── */}
       <section className="formats-section alt-bg" id="formats">
         <div className="container">
