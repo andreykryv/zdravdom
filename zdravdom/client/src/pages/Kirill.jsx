@@ -6,7 +6,8 @@ export default function Kirill({ onBook }) {
   return (
     <div ref={ref}>
       <section className="specialist-hero">
-        <div className="specialist-hero-bg"><div className="specialist-hero-overlay"/></div>
+        <div className="specialist-hero-bg"/>
+        <div className="specialist-hero-overlay"/>
         <div className="container specialist-hero-content">
           <div className="breadcrumb reveal-up"><a href="/">ЗдравДом</a><span>/</span><span>Кирилл</span></div>
           <div className="specialist-hero-grid">

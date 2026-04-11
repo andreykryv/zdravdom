@@ -37,17 +37,15 @@
 /* Desktop actions */
 .header-actions { display: flex; align-items: center; gap: 10px; }
 .desktop-phones {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
-/* Каждая кнопка занимает всю ширину колонки, содержимое по центру */
 .phone-copy-item {
-  width: 100%;
-  display: flex; justify-content: center; align-items: center; gap: 7px;
+  display: flex; align-items: center; gap: 7px;
   background: rgba(26, 46, 30, 0.5);
-  border: 1px solid rgba(176, 120, 64, 0.3); border-radius: 60px; padding: 6px 16px;
-  cursor: pointer; font-size: 0.82rem; font-weight: 500; color: var(--c-cream);
+  border: 1px solid rgba(176, 120, 64, 0.3); border-radius: 60px; padding: 5px 14px;
+  cursor: pointer; font-size: 0.79rem; font-weight: 500; color: var(--c-cream);
   transition: all 0.2s; backdrop-filter: blur(4px); white-space: nowrap;
   font-family: var(--font-body);
 }
@@ -111,8 +109,4 @@
   .logo-main { font-size: 1.9rem; }
   .logo-sub { font-size: 0.72rem; }
   .logo-icon svg { width: 52px; height: 52px; }
-}
-@media (max-width: 1023px) {
-  .desktop-phones { gap: 8px; }
-  .phone-copy-item { padding: 5px 10px; font-size: 0.75rem; }
 }

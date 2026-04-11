@@ -63,9 +63,7 @@ export default function Home({ onBook }) {
           <canvas ref={canvasRef} className="hero-particles"/>
         </div>
         <div className="container hero-content">
-          <div className="hero-badge reveal-up">
-    
-          </div>
+          
           <h1 className="hero-title reveal-up delay-1">
             Убираем боль в спине за <em>1–3 сеанса,</em><br/>
             восстанавливаем нервную систему без таблеток —&nbsp;<em>авторский подход</em> двух специалистов в Краснодаре

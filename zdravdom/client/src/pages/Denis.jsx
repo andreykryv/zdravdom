@@ -2,6 +2,13 @@ import { useEffect, useRef } from 'react';
 import useReveal from '../hooks/useReveal';
 import './Specialist.css';
 
+const STEPS = [
+  ['01','Введение и настройка','Знакомство, обсуждение текущего состояния, комфортное размещение'],
+  ['02','Расслабление и дыхание','Мягкие техники для снятия первичного напряжения'],
+  ['03','Погружение в звук','Основная часть — звук ведёт вас в глубокое состояние покоя'],
+  ['04','Интеграция и завершение','Мягкий выход из практики, время «приземлиться»'],
+];
+
 export default function Denis({ onBook }) {
   const ref = useReveal();
 
@@ -128,14 +135,14 @@ export default function Denis({ onBook }) {
             <p className="section-sub">Длительность: 60–90 минут</p>
           </div>
           <div className="session-steps reveal-up delay-1">
-            {[['01','Введение и настройка','Знакомство, обсуждение текущего состояния, комфортное размещение'],['02','Расслабление и дыхание','Мягкие техники для снятия первичного напряжения'],['03','Погружение в звук','Основная часть — звук ведёт вас в глубокое состояние покоя'],['04','Интеграция и завершение','Мягкий выход из практики, время «приземлиться»']].map(([n,t,d],i,arr) => (
-              <>
-                <div className="session-step" key={n}>
+            {STEPS.map(([n, t, d], i) => (
+              <div key={n} style={{ display: 'contents' }}>
+                <div className="session-step">
                   <div className="step-num">{n}</div>
                   <div className="step-content"><h4>{t}</h4><p>{d}</p></div>
                 </div>
-                {i < arr.length-1 && <div className="step-arrow" key={`a${n}`}>→</div>}
-              </>
+                {i < STEPS.length - 1 && <div className="step-arrow">→</div>}
+              </div>
             ))}
           </div>
         </div>
