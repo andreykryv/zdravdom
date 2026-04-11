@@ -1,7 +1,7 @@
 /* ─── SPECIALIST HERO ─── */
 .specialist-hero { position:relative; min-height:80vh; background:var(--c-forest); display:flex; align-items:flex-end; overflow:hidden; }
 .specialist-hero-bg { position:absolute; inset:0; background-image:url('/images/hero-bg.jpg'); background-size:cover; background-position:center; }
-.sound-bg { background-image:none !important; background:linear-gradient(135deg,#0d1f10,#1a3d2a); }
+.sound-bg { background-image:url('/images/hero-bg.jpg') !important; background-size:cover; background-position:center; }
 .specialist-hero-overlay { position:absolute; inset:0; background:linear-gradient(to right,rgba(26,46,30,.93) 0%,rgba(26,46,30,.65) 60%,rgba(26,46,30,.85) 100%); }
 .sound-waves { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
 .specialist-hero-content { position:relative; z-index:2; padding-top:calc(var(--nav-h) + 3rem); padding-bottom:4rem; }
