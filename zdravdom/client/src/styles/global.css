@@ -120,6 +120,7 @@ strong { font-weight:600; }
   transition:opacity 0.7s var(--ease-out),transform 0.7s var(--ease-out);
 }
 .reveal-up.visible { opacity:1; transform:translateY(0); }
+.reveal-up.visible.breadcrumb { padding-top: calc(var(--nav-h) + 20px); }
 .reveal-right { opacity:0; transform:translateX(40px); transition:opacity 0.8s var(--ease-out),transform 0.8s var(--ease-out); }
 .reveal-right.visible { opacity:1; transform:translateX(0); }
 .delay-1 { transition-delay:.1s; }
