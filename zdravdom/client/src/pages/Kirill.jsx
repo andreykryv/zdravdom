@@ -12,7 +12,7 @@ export default function Kirill({ onBook }) {
           <div className="breadcrumb reveal-up"><a href="/">ЗдравДом</a><span>/</span><span>Кирилл</span></div>
           <div className="specialist-hero-grid">
             <div className="specialist-hero-photo reveal-up delay-1">
-              <img src="/images/kirill.jpg" alt="Кирилл" onError={e=>{e.target.style.display='none';e.target.nextElementSibling.style.display='flex'}}/>
+              <img src="/images/kirill.jpg" alt="Кирилл" onError={e=>{e.target.style.display='none';e.target.nextSibling.style.display='flex'}}/>
               <div className="photo-placeholder-lg"><span>К</span></div>
               <div className="hero-photo-accent"/>
             </div>

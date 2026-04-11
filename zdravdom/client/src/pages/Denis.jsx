@@ -54,7 +54,7 @@ export default function Denis({ onBook }) {
           <div className="breadcrumb reveal-up"><a href="/">ЗдравДом</a><span>/</span><span>Денис · Саунд-хилинг</span></div>
           <div className="specialist-hero-grid">
             <div className="specialist-hero-photo reveal-up delay-1">
-              <img src="/images/denis.jpg" alt="Денис" onError={e=>{e.target.style.display='none';e.target.nextElementSibling.style.display='flex'}}/>
+              <img src="/images/denis.jpg" alt="Денис" onError={e=>{e.target.style.display='none';e.target.nextSibling.style.display='flex'}}/>
               <div className="photo-placeholder-lg sound-placeholder"><span>Д</span></div>
               <div className="hero-photo-accent sound-accent"/>
             </div>
