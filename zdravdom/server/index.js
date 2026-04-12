@@ -77,11 +77,14 @@ app.get('/api/health', (_, res) => res.json({ ok: true }));
 // Admin login
 app.post('/api/admin/login', async (req, res) => {
   const { password } = req.body;
-  const correct = await bcrypt.compare(password, await bcrypt.hash(process.env.ADMIN_PASSWORD, 10))
-    .catch(() => password === process.env.ADMIN_PASSWORD);
-  if (!correct && password !== process.env.ADMIN_PASSWORD)
+  const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+  
+  // Простая проверка пароля (без хеширования для простоты)
+  const correct = (password === adminPassword);
+  
+  if (!correct)
     return res.status(401).json({ error: 'Неверный пароль' });
-  const token = jwt.sign({ role: 'admin' }, process.env.JWT_SECRET, { expiresIn: '24h' });
+  const token = jwt.sign({ role: 'admin' }, process.env.JWT_SECRET || 'secret', { expiresIn: '24h' });
   res.json({ token });
 });
 
