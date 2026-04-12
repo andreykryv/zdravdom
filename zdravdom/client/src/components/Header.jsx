@@ -35,19 +35,19 @@ export default function Header({ onBook, onPhone }) {
       <header className={`site-header${scrolled ? ' scrolled' : ''}`} id="siteHeader">
         <div className="header-inner">
           {/* LOGO */}
-          <a href="/" class="logo redesign-logo-v5">
-  <div class="logo-icon">
+        <a href="/" className="logo redesign-logo-v5">
+  <div className="logo-icon">
     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="22" cy="22" r="20" stroke="var(--c-copper)" stroke-width="1.2" fill="none"/>
-      <path d="M10 24 L22 12 L34 24" stroke="var(--c-copper-lt)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <rect x="14" y="24" width="16" height="12" stroke="var(--c-copper-lt)" stroke-width="1.3" fill="none"/>
-      <circle cx="22" cy="28" r="4.5" stroke="var(--c-copper)" stroke-width="1.2" fill="none"/>
-      <path d="M19.5 28 C20.5 26.5, 23.5 26.5, 24.5 28" stroke="var(--c-copper)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+      <circle cx="22" cy="22" r="20" stroke="var(--c-copper)" strokeWidth="1.2" fill="none"/>
+      <path d="M10 24 L22 12 L34 24" stroke="var(--c-copper-lt)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+      <rect x="14" y="24" width="16" height="12" stroke="var(--c-copper-lt)" strokeWidth="1.3" fill="none"/>
+      <circle cx="22" cy="28" r="4.5" stroke="var(--c-copper)" strokeWidth="1.2" fill="none"/>
+      <path d="M19.5 28 C20.5 26.5, 23.5 26.5, 24.5 28" stroke="var(--c-copper)" strokeWidth="1.3" strokeLinecap="round" fill="none"/>
     </svg>
   </div>
-  <div class="logo-text-block">
-    <span class="logo-main">ЗдравДом</span>
-    <span class="logo-sub">центр здоровья</span>
+  <div className="logo-text-block">
+    <span className="logo-main">ЗдравДом</span>
+    <span className="logo-sub">центр здоровья</span>
   </div>
 </a>
 
