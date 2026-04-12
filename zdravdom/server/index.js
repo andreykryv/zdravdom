@@ -15,9 +15,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = process.env.PORT || 5000;
 const DATA_FILE = path.join(__dirname, 'data', 'articles.json');
-
+const CONTENT_FILE = path.join(__dirname, 'data', 'site-content.json');
 app.use(cors({ origin: '*' }));
 app.use(express.json());
+
 
 // ─── HELPERS ───────────────────────────────────────────────
 async function readArticles() {
@@ -32,6 +33,20 @@ async function readArticles() {
 async function writeArticles(articles) {
   await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
   await fs.writeFile(DATA_FILE, JSON.stringify(articles, null, 2));
+}
+
+async function readContent() {
+  try {
+    const raw = await fs.readFile(CONTENT_FILE, 'utf-8');
+    return JSON.parse(raw);
+  } catch {
+    return {};
+  }
+}
+
+async function writeContent(content) {
+  await fs.mkdir(path.dirname(CONTENT_FILE), { recursive: true });
+  await fs.writeFile(CONTENT_FILE, JSON.stringify(content, null, 2));
 }
 
 // ─── EMAIL ─────────────────────────────────────────────────
@@ -143,6 +158,19 @@ app.delete('/api/articles/:id', authMiddleware, async (req, res) => {
   articles = articles.filter(a => a.id !== req.params.id);
   await writeArticles(articles);
   res.json({ ok: true });
+});
+
+// GET site content (public)
+app.get('/api/content', async (_, res) => {
+  const content = await readContent();
+  res.json(content);
+});
+
+// UPDATE site content (admin)
+app.put('/api/content', authMiddleware, async (req, res) => {
+  const newContent = req.body;
+  await writeContent(newContent);
+  res.json(newContent);
 });
 
 app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
