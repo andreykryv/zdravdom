@@ -1,22 +1,27 @@
+```
+# Dependencies
 node_modules/
-client/node_modules/
-server/node_modules/
-client/dist/
+zdravdom/client/node_modules/
 
-# Секреты — НИКОГДА не коммитить
+# Build artifacts
+zdravdom/client/dist/
+build/
+dist/
+
+# Temporary files
+*.tmp
+*.swp
+*.log
+
+# Environment files
 .env
 .env.local
-.env.production
+*.env.*
 
-# Логи
-*.log
-npm-debug.log*
-logs/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# IDE
+# Editors
 .vscode/
 .idea/
+
+# Vite specific
+.vite/
+```
