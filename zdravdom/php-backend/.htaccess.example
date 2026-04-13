@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# Перенаправление API запросов на PHP бэкенд
+RewriteRule ^api/(.*)$ php-backend/api.php [L,QSA]
+
+# Для React Router (SPA) - все несуществующие файлы перенаправляем на index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.html [QSA,L]
+
+# Защита config.php от прямого доступа
+<Files "php-backend/config.php">
+  Order Allow,Deny
+  Deny from all
+</Files>
