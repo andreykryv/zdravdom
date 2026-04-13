@@ -1,27 +1,58 @@
 ```
+# Compiled and build artifacts
+*.pyc
+__pycache__/
+*.o
+*.obj
+*.class
+*.exe
+*.dll
+*.so
+*.a
+*.out
+
 # Dependencies
 node_modules/
-zdravdom/client/node_modules/
+vendor/
+composer.lock
+*.lock
 
-# Build artifacts
-zdravdom/client/dist/
-build/
-dist/
-
-# Temporary files
+# Logs and temp files
+*.log
 *.tmp
 *.swp
-*.log
+*.swo
 
-# Environment files
+# Environment
 .env
 .env.local
-*.env.*
+.env.*
 
 # Editors
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# Vite specific
-.vite/
+# System files
+.DS_Store
+Thumbs.db
+
+# Build and distribution
+dist/
+build/
+target/
+coverage/
+htmlcov/
+.coverage
+*.tar*
+*.zip
+*.gz
+*.rar
+*.7z
+
+# PHP specific
+*.php~
+.htaccess
+!zdravdom/php-backend/.htaccess.example
 ```
