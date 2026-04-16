@@ -1,8 +1,60 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useReveal from '../hooks/useReveal';
 import ReviewsSlider from '../components/ReviewsSlider';
 import './Home.css';
+
+const API = '/api';
+
+const DEFAULT_CONTENT = {
+  hero: {
+    title: 'Убираем боль в спине за <em>1–3 сеанса </em> и восстанавливаем нервную систему без таблеток —&nbsp;<em>авторский подход</em> двух специалистов в Краснодаре',
+    ctaButton: 'Записаться на приём',
+    learnMoreButton: 'Узнать больше'
+  },
+  about: {
+    tag: 'О нас',
+    title: 'Место, где работают <em>в команде</em> ради вашего здоровья',
+    body1: 'Мы занимаемся восстановлением опорно-двигательного аппарата. Наш комплексный подход и командная работа дают результаты, недостижимые для частных мастеров и обычных клиник.',
+    body2: 'Мы успешно работаем с межпозвоночными грыжами и протрузиями, спондилезом, коксартрозом, сколиозом — и подавляющим большинством других проблем опорно-двигательного аппарата.',
+    quote: '«Истинная причина боли в спине, суставах и шее — в мышцах. Мы освобождаем их от спазмов.»',
+    quoteAuthor: 'Кирилл, хиропрактик'
+  },
+  services: {
+    tag: 'Что мы предлагаем',
+    title: 'Четыре направления <em>для вашего здоровья</em>',
+    subtitle: 'Каждая практика — отдельная история исцеления. Вместе — полная программа восстановления.',
+    cards: [
+      { num: '01', title: 'Хиропрактика', desc: 'Миопрессура, акупрессура, висцеральная терапия и мануальные практики — авторский метод Кирилла для устранения боли в спине, шее и суставах.', cta: 'Подробнее' },
+      { num: '02', title: 'Саунд-хилинг', desc: 'Тибетские поющие чаши, гонги и колокола — звуковые вибрации снимают нервное напряжение и психосоматические мышечные блоки.', cta: 'Подробнее' },
+      { num: '03', title: 'Телесная терапия', desc: 'Комплекс упражнений, подобранный специально для вас. Специалист научит, проконтролирует и поможет восстановить двигательную активность.', cta: 'Записаться' },
+      { num: '04', title: 'Групповые медитации', desc: 'Воскресные медитации под тибетские чаши и чайные церемонии. Социальная активность, принятие тела, тёплое общение с единомышленниками.', cta: 'Записаться' }
+    ]
+  },
+  specialists: {
+    tag: 'Наши специалисты',
+    kirill: { badge: 'Хиропрактик', role: 'Хиропрактик · Специалист по опорно-двигательному аппарату', desc: 'Многолетний опыт работы с самыми сложными случаями. Автор метода, объединяющего миопрессуру, акупрессуру и висцеральную терапию.' },
+    denis: { badge: 'Саунд-хилер', role: 'Саунд-хилер · Практик звуковых медитаций', desc: 'Несколько лет исследует влияние звука и вибрации на состояние человека. Объединяет знания о дыхании, энергетике и глубоком расслаблении.' }
+  },
+  articles: {
+    tag: 'База знаний',
+    title: 'Полезные <em>статьи</em>',
+    subtitle: 'Авторские материалы от специалистов ЗдравДом — понятно о сложном.'
+  },
+  reviews: {
+    tag: 'Отзывы',
+    title: 'Они уже <em>вернулись к жизни</em>'
+  },
+  formats: {
+    tag: 'Форматы приёма',
+    title: 'Здоровье там, где удобно <em>Вам</em>',
+    items: [
+      ['Приём в Краснодаре', 'Уютный кабинет в центре города с всем необходимым оборудованием'],
+      ['Здравница Садовое', 'Приём на природе — особая атмосфера для глубокого восстановления'],
+      ['Выездной формат', 'Специалист приедет к вам домой или в удобное место']
+    ]
+  }
+};
 
 const REVIEWS = [
   { name:'Ратмир', meta:'28 лет · военный', text:'Пришёл больным, ушёл здоровым! Спасибо большое Кирилл за помощь, это самая лучшая работа в мире! Продолжайте заботиться о здоровье людей, у вас это круто получается!' },
@@ -19,7 +71,26 @@ const ARTICLES_PREVIEW = [
 ];
 
 export default function Home({ onBook }) {
+  const [content, setContent] = useState(DEFAULT_CONTENT);
+  const [loading, setLoading] = useState(true);
   const pageRef = useReveal();
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const res = await fetch(`${API}/content`);
+        if (res.ok) {
+          const data = await res.json();
+          setContent(prev => ({ ...prev, ...data }));
+        }
+      } catch (e) {
+        console.error('Failed to load content:', e);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchContent();
+  }, []);
 
   // Particle canvas
   const canvasRef = useRef(null);
@@ -63,11 +134,8 @@ export default function Home({ onBook }) {
           <canvas ref={canvasRef} className="hero-particles"/>
         </div>
         <div className="container hero-content">
-          
-          <h1 className="hero-title reveal-up delay-1">
-            Убираем боль в спине за <em>1–3 сеанса </em>
-            и восстанавливаем нервную систему без таблеток —&nbsp;<em>авторский подход</em> двух специалистов в Краснодаре
-          </h1>
+
+          <h1 className="hero-title reveal-up delay-1" dangerouslySetInnerHTML={{__html: content.hero?.title || DEFAULT_CONTENT.hero.title}} />
           <ul className="hero-bullets reveal-up delay-2">
             <li>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
@@ -81,14 +149,14 @@ export default function Home({ onBook }) {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
               <span>Многолетний опыт</span>
             </li>
-            
+
           </ul>
-         
-         
+
+
           <div className="hero-actions reveal-up delay-3">
-            <button className="btn btn-cta btn-lg" onClick={onBook}>Записаться на приём</button>
+            <button className="btn btn-cta btn-lg" onClick={onBook}>{content.hero?.ctaButton || DEFAULT_CONTENT.hero.ctaButton}</button>
             <a href="#services" className="btn btn-ghost btn-lg" onClick={e=>{e.preventDefault();document.getElementById('services')?.scrollIntoView({behavior:'smooth'})}}>
-              Узнать больше
+              {content.hero?.learnMoreButton || DEFAULT_CONTENT.hero.learnMoreButton}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>
           </div>
@@ -100,10 +168,10 @@ export default function Home({ onBook }) {
         <div className="container">
           <div className="about-grid">
             <div className="about-text">
-              <span className="section-tag reveal-up">О нас</span>
-              <h2 className="section-title reveal-up delay-1">Место, где работают <em>в команде</em> ради вашего здоровья</h2>
-              <p className="body-text reveal-up delay-2">Мы занимаемся восстановлением опорно-двигательного аппарата. Наш комплексный подход и командная работа дают результаты, недостижимые для частных мастеров и обычных клиник.</p>
-              <p className="body-text reveal-up delay-3">Мы успешно работаем с межпозвоночными грыжами и протрузиями, спондилезом, коксартрозом, сколиозом — и подавляющим большинством других проблем опорно-двигательного аппарата.</p>
+              <span className="section-tag reveal-up">{content.about?.tag || DEFAULT_CONTENT.about.tag}</span>
+              <h2 className="section-title reveal-up delay-1" dangerouslySetInnerHTML={{__html: content.about?.title || DEFAULT_CONTENT.about.title}} />
+              <p className="body-text reveal-up delay-2">{content.about?.body1 || DEFAULT_CONTENT.about.body1}</p>
+              <p className="body-text reveal-up delay-3">{content.about?.body2 || DEFAULT_CONTENT.about.body2}</p>
               <div className="about-features reveal-up delay-4">
                 {[
                   ['Командный подход','Разные специалисты — единый результат'],
@@ -126,8 +194,8 @@ export default function Home({ onBook }) {
                 <span>Место практики · ЗдравДом</span>
               </div>
               <div className="about-quote">
-                <blockquote>«Истинная причина боли в спине, суставах и шее — в мышцах. Мы освобождаем их от спазмов.»</blockquote>
-                <cite>Кирилл, хиропрактик</cite>
+                <blockquote>{content.about?.quote || DEFAULT_CONTENT.about.quote}</blockquote>
+                <cite>{content.about?.quoteAuthor || DEFAULT_CONTENT.about.quoteAuthor}</cite>
               </div>
             </div>
           </div>
@@ -138,15 +206,22 @@ export default function Home({ onBook }) {
       <section className="services-section" id="services">
         <div className="container">
           <div className="section-header reveal-up">
-            <span className="section-tag" style={{borderColor:'rgba(176,120,64,.5)'}}>Что мы предлагаем</span>
-            <h2 className="section-title" style={{color:'var(--c-cream)'}}>Четыре направления <em>для вашего здоровья</em></h2>
-            <p className="section-sub" style={{color:'rgba(245,239,230,.75)'}}>Каждая практика — отдельная история исцеления. Вместе — полная программа восстановления.</p>
+            <span className="section-tag" style={{borderColor:'rgba(176,120,64,.5)'}}>{content.services?.tag || DEFAULT_CONTENT.services.tag}</span>
+            <h2 className="section-title" style={{color:'var(--c-cream)'}} dangerouslySetInnerHTML={{__html: content.services?.title || DEFAULT_CONTENT.services.title}} />
+            <p className="section-sub" style={{color:'rgba(245,239,230,.75)'}}>{content.services?.subtitle || DEFAULT_CONTENT.services.subtitle}</p>
           </div>
           <div className="services-grid">
-            <ServiceCard num="01" title="Хиропрактика" desc="Миопрессура, акупрессура, висцеральная терапия и мануальные практики — авторский метод Кирилла для устранения боли в спине, шее и суставах." tags={['Грыжи','Спондилез','Сколиоз','ЖКТ']} cta={<Link to="/kirill" className="btn btn-glow-outline w-full">Подробнее</Link>} delay="delay-1"/>
-            <ServiceCard num="02" title="Саунд-хилинг" desc="Тибетские поющие чаши, гонги и колокола — звуковые вибрации снимают нервное напряжение и психосоматические мышечные блоки." tags={['Стресс','Бессонница','Апатия','Нервная система']} cta={<Link to="/denis" className="btn btn-glow-outline w-full">Подробнее</Link>} delay="delay-2"/>
-            <ServiceCard num="03" title="Телесная терапия" desc="Комплекс упражнений, подобранный специально для вас. Специалист научит, проконтролирует и поможет восстановить двигательную активность." tags={['Реабилитация','Упражнения','Движение']} cta={<button className="btn btn-cta w-full" onClick={onBook}>Записаться</button>} delay="delay-3"/>
-            <ServiceCard num="04" title="Групповые медитации" desc="Воскресные медитации под тибетские чаши и чайные церемонии. Социальная активность, принятие тела, тёплое общение с единомышленниками." tags={['По воскресениям','Чайная церемония','Сообщество']} cta={<button className="btn btn-cta w-full" onClick={onBook}>Записаться</button>} delay="delay-4"/>
+            {(content.services?.cards || DEFAULT_CONTENT.services.cards).map((card, i) => (
+              <ServiceCard
+                key={i}
+                num={card.num}
+                title={card.title}
+                desc={card.desc}
+                tags={['Грыжи','Спондилез','Сколиоз','ЖКТ'][i] ? ['Грыжи','Спондилез','Сколиоз','ЖКТ'] : ['Стресс','Бессонница','Апатия','Нервная система'][i] ? ['Стресс','Бессонница','Апатия','Нервная система'] : ['Реабилитация','Упражнения','Движение']}
+                cta={i < 2 ? <Link to={i === 0 ? "/kirill" : "/denis"} className="btn btn-glow-outline w-full">{card.cta || 'Подробнее'}</Link> : <button className="btn btn-cta w-full" onClick={onBook}>{card.cta || 'Записаться'}</button>}
+                delay={`delay-${i+1}`}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -155,11 +230,29 @@ export default function Home({ onBook }) {
       <section className="specialists-section" id="specialists">
         <div className="container">
           <div className="section-header reveal-up">
-            <span className="section-tag">Наши специалисты</span>
+            <span className="section-tag">{content.specialists?.tag || DEFAULT_CONTENT.specialists.tag}</span>
           </div>
           <div className="specialists-grid">
-            <SpecialistCard name="Кирилл" role="Хиропрактик · Специалист по опорно-двигательному аппарату" img="/images/kirill.jpg" badge="Хиропрактик" skills={['Миопрессура','Акупрессура','Висцеральная терапия','Хиропрактика']} desc="Многолетний опыт работы с самыми сложными случаями. Автор метода, объединяющего миопрессуру, акупрессуру и висцеральную терапию." href="/kirill" delay="delay-1"/>
-            <SpecialistCard name="Денис" role="Саунд-хилер · Практик звуковых медитаций" img="/images/denis.jpg" badge="Саунд-хилер" skills={['Тибетские чаши','Гонги','Медитации','Ретриты']} desc="Несколько лет исследует влияние звука и вибрации на состояние человека. Объединяет знания о дыхании, энергетике и глубоком расслаблении." href="/denis" delay="delay-2"/>
+            <SpecialistCard
+              name="Кирилл"
+              role={content.specialists?.kirill?.role || DEFAULT_CONTENT.specialists.kirill.role}
+              img="/images/kirill.jpg"
+              badge={content.specialists?.kirill?.badge || DEFAULT_CONTENT.specialists.kirill.badge}
+              skills={['Миопрессура','Акупрессура','Висцеральная терапия','Хиропрактика']}
+              desc={content.specialists?.kirill?.desc || DEFAULT_CONTENT.specialists.kirill.desc}
+              href="/kirill"
+              delay="delay-1"
+            />
+            <SpecialistCard
+              name="Денис"
+              role={content.specialists?.denis?.role || DEFAULT_CONTENT.specialists.denis.role}
+              img="/images/denis.jpg"
+              badge={content.specialists?.denis?.badge || DEFAULT_CONTENT.specialists.denis.badge}
+              skills={['Тибетские чаши','Гонги','Медитации','Ретриты']}
+              desc={content.specialists?.denis?.desc || DEFAULT_CONTENT.specialists.denis.desc}
+              href="/denis"
+              delay="delay-2"
+            />
           </div>
         </div>
       </section>
@@ -168,9 +261,9 @@ export default function Home({ onBook }) {
       <section className="articles-preview-section">
         <div className="container">
           <div className="section-header reveal-up">
-            <span className="section-tag">База знаний</span>
-            <h2 className="section-title">Полезные <em>статьи</em></h2>
-            <p className="section-sub">Авторские материалы от специалистов ЗдравДом — понятно о сложном.</p>
+            <span className="section-tag">{content.articles?.tag || DEFAULT_CONTENT.articles.tag}</span>
+            <h2 className="section-title" dangerouslySetInnerHTML={{__html: content.articles?.title || DEFAULT_CONTENT.articles.title}} />
+            <p className="section-sub">{content.articles?.subtitle || DEFAULT_CONTENT.articles.subtitle}</p>
           </div>
           <div className="articles-preview-grid">
             {ARTICLES_PREVIEW.map((a,i) => (
@@ -193,27 +286,23 @@ export default function Home({ onBook }) {
       <section className="reviews-section" id="reviews">
         <div className="container">
           <div className="section-header reveal-up">
-            <span className="section-tag">Отзывы</span>
-            <h2 className="section-title">Они уже <em>вернулись к жизни</em></h2>
+            <span className="section-tag">{content.reviews?.tag || DEFAULT_CONTENT.reviews.tag}</span>
+            <h2 className="section-title" dangerouslySetInnerHTML={{__html: content.reviews?.title || DEFAULT_CONTENT.reviews.title}} />
           </div>
           <ReviewsSlider reviews={REVIEWS}/>
         </div>
       </section>
 
-    
+
       {/* ── FORMATS ── */}
       <section className="formats-section alt-bg" id="formats">
         <div className="container">
           <div className="section-header reveal-up">
-            <span className="section-tag">Форматы приёма</span>
-            <h2 className="section-title">Здоровье там, где удобно <em>Вам</em></h2>
+            <span className="section-tag">{content.formats?.tag || DEFAULT_CONTENT.formats.tag}</span>
+            <h2 className="section-title" dangerouslySetInnerHTML={{__html: content.formats?.title || DEFAULT_CONTENT.formats.title}} />
           </div>
           <div className="formats-grid">
-            {[
-              ['Приём в Краснодаре','Уютный кабинет в центре города с всем необходимым оборудованием'],
-              ['Здравница Садовое','Приём на природе — особая атмосфера для глубокого восстановления'],
-              ['Выездной формат','Специалист приедет к вам домой или в удобное место'],
-            ].map(([t,d],i) => (
+            {(content.formats?.items || DEFAULT_CONTENT.formats.items).map(([t,d],i) => (
               <div className={`format-card reveal-up delay-${i+1}`} key={t}>
                 <div className="format-icon">
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
