@@ -49,7 +49,7 @@ export default function Articles({ onBook }) {
                 <article className={`article-card reveal-up delay-${(i%3)+1}`} key={a.id}>
                   <div className="article-meta">
                     <span className="article-tag">{a.tag}</span>
-                    <span className="article-date">{new Date(a.createdAt).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})}</span>
+                  
                   </div>
                   <h2 className="article-title">{a.title}</h2>
                   <p className="article-excerpt">{a.excerpt}</p>
@@ -83,7 +83,7 @@ export default function Articles({ onBook }) {
             <div className="article-modal-inner">
               <div className="article-modal-meta">
                 <span className="article-tag">{selected.tag}</span>
-                <span className="article-date">{new Date(selected.createdAt).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})}</span>
+             
               </div>
               <h2 className="article-modal-title">{selected.title}</h2>
               {selected.sections?.length > 0 && (

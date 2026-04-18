@@ -171,7 +171,7 @@ export default function Admin() {
                   <div className="admin-article-info">
                     <span className="article-tag">{a.tag}</span>
                     <h3>{a.title}</h3>
-                    <span className="admin-article-date">{new Date(a.createdAt).toLocaleDateString('ru-RU')}</span>
+          
                   </div>
                   <div className="admin-article-actions">
                     <button className="btn btn-outline btn-sm" onClick={()=>openEdit(a)}>Редактировать</button>

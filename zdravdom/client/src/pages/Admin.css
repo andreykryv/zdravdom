@@ -29,7 +29,7 @@
 .admin-article-row { background:white; border-radius:var(--radius-lg); padding:1.5rem 2rem; display:flex; align-items:flex-start; justify-content:space-between; gap:2rem; box-shadow:var(--shadow-sm); border:1px solid var(--c-cream-dk); }
 .admin-article-info { flex:1; }
 .admin-article-info h3 { font-size:1.1rem; margin:.4rem 0 .3rem; color:var(--c-text); }
-.admin-article-date { font-size:.78rem; color:var(--c-text-lt); }
+
 .admin-article-actions { display:flex; gap:.8rem; align-items:center; flex-shrink:0; }
 .admin-editor { background:white; border-radius:var(--radius-lg); padding:2rem; box-shadow:var(--shadow-sm); }
 .admin-editor-head { display:flex; align-items:center; gap:1.5rem; margin-bottom:2rem; }
